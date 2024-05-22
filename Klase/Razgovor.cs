@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
 
-namespace ChatAppVito3g.Klase
-{
+    namespace ChatAppVito3g.Klase
+    {
     public class Razgovor : IComparable
     {
         private int id;
-        private Korisnik brojKorisnika;
+        private List<string> poruke = new List<string>();
         private bool aktivan;
 
         public int Id
@@ -18,10 +18,10 @@ namespace ChatAppVito3g.Klase
             set { id = value; }
         }
 
-        public Korisnik BrojKorisnika
+        public List<string> Poruke
         {
-            get { return brojKorisnika; }
-            set { brojKorisnika = value; }
+            get { return poruke; }
+            set { poruke = value; }
         }
 
         public bool Aktivan
@@ -30,14 +30,26 @@ namespace ChatAppVito3g.Klase
             set { aktivan = value; }
         }
 
+        public void DodajPoruku(string poruka)
+        {
+            poruke.Add(poruka);
+        }
+
         public int CompareTo(object obj)
         {
-            int rez = this.id.CompareTo(((Razgovor)obj).id);
+            if (obj == null) return 1;
 
-            return rez;
+            Razgovor otherRazgovor = obj as Razgovor;
+            if (otherRazgovor != null)
+                return this.id.CompareTo(otherRazgovor.id);
+            else
+                throw new ArgumentException("Object is not a Razgovor");
         }
-        public override string ToString()
 
-           => Aktivan.ToString() + "," + BrojKorisnika.ToString() + "->" + Id.ToString();
+        public override string ToString()
+        {
+            return $"Razgovor {Id}, Aktivan: {Aktivan}, Broj Poruka: {Poruke.Count}";
+        }
     }
 }
+    

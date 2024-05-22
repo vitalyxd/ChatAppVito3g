@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChatAppVito3g.Klase;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,16 +13,16 @@ namespace ChatAppVito3g.Forme
 {
     public partial class PrikazRazgovora : Form
     {
-        private List<string> razgovori = new List<string>();
+        private List<Razgovor> razgovori = new List<Razgovor>();
 
         public PrikazRazgovora()
         {
             InitializeComponent();
         }
 
-        public void DodajRazgovor(string poruka)
+        public void DodajRazgovor(Razgovor razgovor)
         {
-            razgovori.Add(poruka);
+            razgovori.Add(razgovor);
             AzurirajListBox();
         }
 
@@ -30,7 +31,7 @@ namespace ChatAppVito3g.Forme
             RazgovoriListBox.Items.Clear();
             for (int i = 0; i < razgovori.Count; i++)
             {
-                RazgovoriListBox.Items.Add("Razgovor " + (i + 1));
+                RazgovoriListBox.Items.Add(razgovori[i].ToString());
             }
         }
 
@@ -39,8 +40,10 @@ namespace ChatAppVito3g.Forme
             if (RazgovoriListBox.SelectedItem != null)
             {
                 int indeks = RazgovoriListBox.SelectedIndex;
-                string odabraniRazgovor = razgovori[indeks];
-                MessageBox.Show($"Otvoren razgovor {indeks + 1}:\n{odabraniRazgovor}", "Otvori Razgovor", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Razgovor odabraniRazgovor = razgovori[indeks];
+                string poruke = string.Join("\n", odabraniRazgovor.Poruke);
+                MessageBox.Show($"Otvoren razgovor {indeks + 1}:\n{poruke}", "Otvori Razgovor", MessageBoxButtons.OK, MessageBoxIcon.Information); /* TOOO, treba napravit da se otvori ta forma 
+                                                                                                                                                    * PosaljiPoruku.cs sa tim porukama */
             }
             else
             {

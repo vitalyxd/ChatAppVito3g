@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChatAppVito3g.Klase;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,11 +15,14 @@ namespace ChatAppVito3g.Forme
     {
         private static int brojacRazgovora = 1;
         private PrikazRazgovora prikazRazgovoraForm;
+        private Razgovor trenutniRazgovor;
 
-        public PosaljiPoruku(PrikazRazgovora form)
+        public PosaljiPoruku(PrikazRazgovora form)  
         {
             InitializeComponent();
             prikazRazgovoraForm = form;
+            trenutniRazgovor = new Razgovor { Id = brojacRazgovora, Aktivan = true };
+            this.FormClosed += new FormClosedEventHandler(PosaljiPoruku_FormClosed);
         }
 
         private void Posalji_Click(object sender, EventArgs e)
@@ -27,15 +31,19 @@ namespace ChatAppVito3g.Forme
 
             if (!string.IsNullOrEmpty(poruka))
             {
-                string nazivRazgovora = "Razgovor " + brojacRazgovora;
-                prikazRazgovoraForm.DodajRazgovor(nazivRazgovora + ": " + poruka);
-                brojacRazgovora++;
+                PrikazPoruka.Items.Add(poruka);
                 UpisiPoruku.Clear();
             }
             else
             {
                 MessageBox.Show("Unesite poruku prije slanja.", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void PosaljiPoruku_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            prikazRazgovoraForm.DodajRazgovor(trenutniRazgovor);
+            brojacRazgovora++;
         }
     }
 }
