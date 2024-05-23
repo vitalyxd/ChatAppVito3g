@@ -1,12 +1,6 @@
 ﻿using ChatAppVito3g.Klase;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ChatAppVito3g.Forme
@@ -14,11 +8,14 @@ namespace ChatAppVito3g.Forme
     public partial class PrikazRazgovora : Form
     {
         private List<Razgovor> razgovori = new List<Razgovor>();
+        public static int BrojacRazgovora = 1;
 
         public PrikazRazgovora()
         {
             InitializeComponent();
         }
+
+        public List<Razgovor> Razgovori => razgovori;
 
         public void DodajRazgovor(Razgovor razgovor)
         {
@@ -26,12 +23,12 @@ namespace ChatAppVito3g.Forme
             AzurirajListBox();
         }
 
-        private void AzurirajListBox()
+        public void AzurirajListBox()
         {
             RazgovoriListBox.Items.Clear();
-            for (int i = 0; i < razgovori.Count; i++)
+            foreach (var razgovor in razgovori)
             {
-                RazgovoriListBox.Items.Add(razgovori[i].ToString());
+                RazgovoriListBox.Items.Add(razgovor.ToString());
             }
         }
 
@@ -41,9 +38,10 @@ namespace ChatAppVito3g.Forme
             {
                 int indeks = RazgovoriListBox.SelectedIndex;
                 Razgovor odabraniRazgovor = razgovori[indeks];
-                string poruke = string.Join("\n", odabraniRazgovor.Poruke);
-                MessageBox.Show($"Otvoren razgovor {indeks + 1}:\n{poruke}", "Otvori Razgovor", MessageBoxButtons.OK, MessageBoxIcon.Information); /* TOOO, treba napravit da se otvori ta forma 
-                                                                                                                                                    * PosaljiPoruku.cs sa tim porukama */
+
+                // Otvori formu PosaljiPoruku s odabranim razgovorom
+                PosaljiPoruku forma = new PosaljiPoruku(this, odabraniRazgovor);
+                forma.Show();
             }
             else
             {

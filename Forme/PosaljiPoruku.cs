@@ -1,28 +1,36 @@
 ﻿using ChatAppVito3g.Klase;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ChatAppVito3g.Forme
 {
     public partial class PosaljiPoruku : Form
     {
-        private static int brojacRazgovora = 1;
         private PrikazRazgovora prikazRazgovoraForm;
         private Razgovor trenutniRazgovor;
 
-        public PosaljiPoruku(PrikazRazgovora form)  
+        // Konstruktor za novi razgovor
+        public PosaljiPoruku(PrikazRazgovora form)
         {
             InitializeComponent();
             prikazRazgovoraForm = form;
-            trenutniRazgovor = new Razgovor { Id = brojacRazgovora, Aktivan = true };
+            trenutniRazgovor = new Razgovor { Id = PrikazRazgovora.BrojacRazgovora++, Aktivan = true };
             this.FormClosed += new FormClosedEventHandler(PosaljiPoruku_FormClosed);
+        }
+
+        // Konstruktor za postojeći razgovor
+        public PosaljiPoruku(PrikazRazgovora form, Razgovor razgovor)
+        {
+            InitializeComponent();
+            prikazRazgovoraForm = form;
+            trenutniRazgovor = razgovor;
+            this.FormClosed += new FormClosedEventHandler(PosaljiPoruku_FormClosed);
+
+            // Prikaz poruka u ListBoxu
+            foreach (var poruka in trenutniRazgovor.Poruke)
+            {
+                PrikazPoruka.Items.Add(poruka);
+            }
         }
 
         private void Posalji_Click(object sender, EventArgs e)
@@ -32,7 +40,9 @@ namespace ChatAppVito3g.Forme
             if (!string.IsNullOrEmpty(poruka))
             {
                 PrikazPoruka.Items.Add(poruka);
+                trenutniRazgovor.DodajPoruku(poruka); // Dodaj poruku u trenutniRazgovor
                 UpisiPoruku.Clear();
+                prikazRazgovoraForm.AzurirajListBox(); // Ažuriraj prikaz razgovora
             }
             else
             {
@@ -42,8 +52,11 @@ namespace ChatAppVito3g.Forme
 
         private void PosaljiPoruku_FormClosed(object sender, FormClosedEventArgs e)
         {
-            prikazRazgovoraForm.DodajRazgovor(trenutniRazgovor);
-            brojacRazgovora++;
+            // Ažuriraj razgovore samo ako je ovo novi razgovor
+            if (!prikazRazgovoraForm.Razgovori.Contains(trenutniRazgovor))
+            {
+                prikazRazgovoraForm.DodajRazgovor(trenutniRazgovor);
+            }
         }
     }
 }

@@ -1,11 +1,8 @@
-﻿    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
 
-    namespace ChatAppVito3g.Klase
-    {
+namespace ChatAppVito3g.Klase
+{
     public class Razgovor : IComparable
     {
         private int id;
@@ -52,4 +49,3 @@
         }
     }
 }
-    
