@@ -1,13 +1,8 @@
 ﻿using ChatAppVito3g.Klase;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ChatAppVito3g.Forme
@@ -15,9 +10,13 @@ namespace ChatAppVito3g.Forme
     public partial class KreiranjeKorisnika : Form
     {
         private Korisnik odabraniKorisnik;
+        private PodatkovniKontekst podatkovniKontekst;
+
         public KreiranjeKorisnika()
         {
             InitializeComponent();
+            podatkovniKontekst = new PodatkovniKontekst();
+            UcitajKorisnike();
         }
 
         private void KreirajKorisnika_Click(object sender, EventArgs e)
@@ -53,25 +52,31 @@ namespace ChatAppVito3g.Forme
             // Kreiranje novog korisnika
             Korisnik noviKorisnik = new Korisnik(ime, prezime, godRodj, email, username, password);
 
-            // Dodavanje korisnika u ListBox
+            // Dodavanje korisnika u ListBox i podatkovni kontekst
             PrikazKorisnika.Items.Add(noviKorisnik);
+            podatkovniKontekst.Korisnici.Add(noviKorisnik);
 
             // Čišćenje polja nakon dodavanja korisnika
-            UnosImena.Clear();
-            UnosPrezimena.Clear();
-            UnosGodRodj.Clear();
-            UnosEmaila.Clear();
-            UnosUsernamea.Clear();
-            UnosPassworda.Clear();
+            ClearTextBoxes();
+
+            // Spremanje korisnika
+            podatkovniKontekst.SpremiKorisnike();
 
             MessageBox.Show("Uspješno napravljen korisnik");
         }
+
         private void ObrisiKorisnika_Click(object sender, EventArgs e)
         {
             if (PrikazKorisnika.SelectedItem != null)
             {
-                // Brisanje odabranog korisnika iz ListBox-a
-                PrikazKorisnika.Items.Remove(PrikazKorisnika.SelectedItem);
+                // Brisanje odabranog korisnika iz ListBox-a i podatkovnog konteksta
+                Korisnik korisnikZaBrisanje = (Korisnik)PrikazKorisnika.SelectedItem;
+                PrikazKorisnika.Items.Remove(korisnikZaBrisanje);
+                podatkovniKontekst.Korisnici.Remove(korisnikZaBrisanje);
+
+                // Spremanje promjena
+                podatkovniKontekst.SpremiKorisnike();
+
                 MessageBox.Show("Korisnik je uspješno obrisan");
             }
             else
@@ -123,14 +128,11 @@ namespace ChatAppVito3g.Forme
                 odabraniKorisnik.Password = UnosPassworda.Text;
                 PrikazKorisnika.Items[PrikazKorisnika.SelectedIndex] = odabraniKorisnik;
 
+                // Spremanje promjena
+                podatkovniKontekst.SpremiKorisnike();
+
                 // Oslobađanje odabranog korisnika i čišćenje TextBox-ova
                 odabraniKorisnik = null;
-                ClearTextBoxes();
-
-                // Oslobađanje odabranog korisnika
-                odabraniKorisnik = null;
-
-                // Oslobađanje TextBox-ova
                 ClearTextBoxes();
 
                 MessageBox.Show("Korisnik je uspješno izmijenjen.");
@@ -138,6 +140,15 @@ namespace ChatAppVito3g.Forme
             else
             {
                 MessageBox.Show("Molimo odaberite korisnika za izmjenu.", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void UcitajKorisnike()
+        {
+            // Učitaj korisnike iz podatkovnog konteksta u ListBox
+            foreach (Korisnik korisnik in podatkovniKontekst.Korisnici)
+            {
+                PrikazKorisnika.Items.Add(korisnik);
             }
         }
 

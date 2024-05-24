@@ -4,81 +4,41 @@ namespace ChatAppVito3g.Klase
 {
     public class Korisnik : IComparable
     {
-        private int id;
-        private string ime;
-        private string prezime;
-        private DateTime godRodj;
-        private string email;
-        private string username;
-        private string password;
+        private static int idCounter = 1;
+        public int Id { get; set; }
+        public string Ime { get; set; }
+        public string Prezime { get; set; }
+        public DateTime GodRodj { get; set; }
+        public string Email { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
 
-        // Konstruktor bez parametara
-        public Korisnik() { }
-
-        // Konstruktor s parametrima
-        public Korisnik(string ime, string prezime, DateTime godRodj, string email, string korisnickoIme, string password)
+        public Korisnik()
         {
-            this.ime = ime;
-            this.prezime = prezime;
-            this.godRodj = godRodj;
-            this.email = email;
-            this.username = korisnickoIme;
-            this.password = password;
+            this.Id = idCounter++;
         }
 
-        public int Id
+        public Korisnik(string ime, string prezime, DateTime godRodj, string email, string korisnickoIme, string password) : this()
         {
-            get { return id; }
-            set { id = value; }
-        }
-
-        public string Ime
-        {
-            get { return ime; }
-            set { ime = value; }
-        }
-
-        public string Prezime
-        {
-            get { return prezime; }
-            set { prezime = value; }
-        }
-
-        public DateTime GodRodj
-        {
-            get { return godRodj; }
-            set { godRodj = value; }
-        }
-
-        public string Email
-        {
-            get { return email; }
-            set { email = value; }
-        }
-
-        public string Username
-        {
-            get { return username; }
-            set { username = value; }
-        }
-
-        public string Password
-        {
-            get { return password; }
-            set { password = value; }
+            this.Ime = ime;
+            this.Prezime = prezime;
+            this.GodRodj = godRodj;
+            this.Email = email;
+            this.Username = korisnickoIme;
+            this.Password = password;
         }
 
         public int CompareTo(object obj)
         {
-            int rez = this.id.CompareTo(((Korisnik)obj).id);
-            if (rez == 0) rez = this.username.CompareTo(((Korisnik)obj).username);
-            if (rez == 0) rez = this.email.CompareTo(((Korisnik)obj).email);
+            int rez = this.Id.CompareTo(((Korisnik)obj).Id);
+            if (rez == 0) rez = this.Username.CompareTo(((Korisnik)obj).Username);
+            if (rez == 0) rez = this.Email.CompareTo(((Korisnik)obj).Email);
             return rez;
         }
 
         public override string ToString()
         {
-            return $"{ime} {prezime} ({username}) - {email} - {godRodj.ToString("dd.MM.yyyy")}";
+            return $"{Ime} {Prezime} ({Username}) - {Email} - {GodRodj:dd.MM.yyyy}";
         }
     }
 }
