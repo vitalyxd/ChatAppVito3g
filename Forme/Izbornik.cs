@@ -29,7 +29,7 @@ namespace ChatAppVito3g
 
         private void PrikazRazgovora_Click(object sender, EventArgs e)
         {
-            prikazRazgovoraForm.Show();
+            prikazRazgovoraForm.ShowDialog();
         }
 
         private void PosaljiPoruku_Click(object sender, EventArgs e)
