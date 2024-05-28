@@ -161,5 +161,13 @@ namespace ChatAppVito3g.Forme
             UnosUsernamea.Clear();
             UnosPassworda.Clear();
         }
+
+        private void PovratakUIzbornik_Click(object sender, EventArgs e)
+        {
+            Izbornik form = new Izbornik();
+            form.Show();
+            
+            this.Close();
+        }
     }
 }

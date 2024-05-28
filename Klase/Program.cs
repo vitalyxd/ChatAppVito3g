@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChatAppVito3g.Forme;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace ChatAppVito3g
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Izbornik());
+            Application.Run(new Login());
         }
     }
 }

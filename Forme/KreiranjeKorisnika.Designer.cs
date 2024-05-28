@@ -47,6 +47,7 @@
             this.ObrisiKorisnika = new System.Windows.Forms.Button();
             this.UrediKorisnika = new System.Windows.Forms.Button();
             this.IzmjeniKorisnika = new System.Windows.Forms.Button();
+            this.PovratakUIzbornik = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // UnosImena
@@ -221,12 +222,24 @@
             this.IzmjeniKorisnika.UseVisualStyleBackColor = true;
             this.IzmjeniKorisnika.Click += new System.EventHandler(this.IzmjeniKorisnika_Click);
             // 
+            // PovratakUIzbornik
+            // 
+            this.PovratakUIzbornik.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.PovratakUIzbornik.Location = new System.Drawing.Point(750, 481);
+            this.PovratakUIzbornik.Name = "PovratakUIzbornik";
+            this.PovratakUIzbornik.Size = new System.Drawing.Size(127, 23);
+            this.PovratakUIzbornik.TabIndex = 18;
+            this.PovratakUIzbornik.Text = "Povratak u izbornik";
+            this.PovratakUIzbornik.UseVisualStyleBackColor = true;
+            this.PovratakUIzbornik.Click += new System.EventHandler(this.PovratakUIzbornik_Click);
+            // 
             // KreiranjeKorisnika
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AntiqueWhite;
             this.ClientSize = new System.Drawing.Size(889, 516);
+            this.Controls.Add(this.PovratakUIzbornik);
             this.Controls.Add(this.IzmjeniKorisnika);
             this.Controls.Add(this.UrediKorisnika);
             this.Controls.Add(this.ObrisiKorisnika);
@@ -273,5 +286,6 @@
         private System.Windows.Forms.Button ObrisiKorisnika;
         private System.Windows.Forms.Button UrediKorisnika;
         private System.Windows.Forms.Button IzmjeniKorisnika;
+        private System.Windows.Forms.Button PovratakUIzbornik;
     }
 }
