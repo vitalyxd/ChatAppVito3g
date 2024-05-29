@@ -49,34 +49,32 @@
             this.IzmjeniKorisnika = new System.Windows.Forms.Button();
             this.PovratakUIzbornik = new System.Windows.Forms.Button();
             this.PovratakULogin = new System.Windows.Forms.Button();
+            this.Sorter = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // UnosImena
             // 
-            this.UnosImena.Location = new System.Drawing.Point(29, 175);
-            this.UnosImena.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.UnosImena.Location = new System.Drawing.Point(22, 142);
             this.UnosImena.Name = "UnosImena";
-            this.UnosImena.Size = new System.Drawing.Size(132, 22);
+            this.UnosImena.Size = new System.Drawing.Size(100, 20);
             this.UnosImena.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.Location = new System.Drawing.Point(16, 11);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(470, 69);
+            this.label1.Size = new System.Drawing.Size(381, 55);
             this.label1.TabIndex = 1;
             this.label1.Text = "Kreiraj korisnika";
             // 
             // KreirajKorisnika
             // 
             this.KreirajKorisnika.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.KreirajKorisnika.Location = new System.Drawing.Point(29, 391);
-            this.KreirajKorisnika.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.KreirajKorisnika.Location = new System.Drawing.Point(22, 318);
             this.KreirajKorisnika.Name = "KreirajKorisnika";
-            this.KreirajKorisnika.Size = new System.Drawing.Size(99, 28);
+            this.KreirajKorisnika.Size = new System.Drawing.Size(74, 23);
             this.KreirajKorisnika.TabIndex = 2;
             this.KreirajKorisnika.Text = "Kreiraj";
             this.KreirajKorisnika.UseVisualStyleBackColor = true;
@@ -86,11 +84,9 @@
             // 
             this.PrikazKorisnika.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.PrikazKorisnika.FormattingEnabled = true;
-            this.PrikazKorisnika.ItemHeight = 17;
-            this.PrikazKorisnika.Location = new System.Drawing.Point(492, 155);
-            this.PrikazKorisnika.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PrikazKorisnika.Location = new System.Drawing.Point(369, 126);
             this.PrikazKorisnika.Name = "PrikazKorisnika";
-            this.PrikazKorisnika.Size = new System.Drawing.Size(443, 276);
+            this.PrikazKorisnika.Size = new System.Drawing.Size(333, 225);
             this.PrikazKorisnika.TabIndex = 3;
             // 
             // directorySearcher1
@@ -101,53 +97,47 @@
             // 
             // UnosPrezimena
             // 
-            this.UnosPrezimena.Location = new System.Drawing.Point(29, 251);
-            this.UnosPrezimena.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.UnosPrezimena.Location = new System.Drawing.Point(22, 204);
             this.UnosPrezimena.Name = "UnosPrezimena";
-            this.UnosPrezimena.Size = new System.Drawing.Size(132, 22);
+            this.UnosPrezimena.Size = new System.Drawing.Size(100, 20);
             this.UnosPrezimena.TabIndex = 4;
             // 
             // UnosGodRodj
             // 
-            this.UnosGodRodj.Location = new System.Drawing.Point(29, 332);
-            this.UnosGodRodj.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.UnosGodRodj.Location = new System.Drawing.Point(22, 270);
             this.UnosGodRodj.Name = "UnosGodRodj";
-            this.UnosGodRodj.Size = new System.Drawing.Size(132, 22);
+            this.UnosGodRodj.Size = new System.Drawing.Size(100, 20);
             this.UnosGodRodj.TabIndex = 5;
             // 
             // UnosEmaila
             // 
-            this.UnosEmaila.Location = new System.Drawing.Point(243, 175);
-            this.UnosEmaila.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.UnosEmaila.Location = new System.Drawing.Point(182, 142);
             this.UnosEmaila.Name = "UnosEmaila";
-            this.UnosEmaila.Size = new System.Drawing.Size(132, 22);
+            this.UnosEmaila.Size = new System.Drawing.Size(100, 20);
             this.UnosEmaila.TabIndex = 6;
             // 
             // UnosUsernamea
             // 
-            this.UnosUsernamea.Location = new System.Drawing.Point(243, 251);
-            this.UnosUsernamea.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.UnosUsernamea.Location = new System.Drawing.Point(182, 204);
             this.UnosUsernamea.Name = "UnosUsernamea";
-            this.UnosUsernamea.Size = new System.Drawing.Size(132, 22);
+            this.UnosUsernamea.Size = new System.Drawing.Size(100, 20);
             this.UnosUsernamea.TabIndex = 7;
             // 
             // UnosPassworda
             // 
-            this.UnosPassworda.Location = new System.Drawing.Point(243, 330);
-            this.UnosPassworda.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.UnosPassworda.Location = new System.Drawing.Point(182, 268);
             this.UnosPassworda.Name = "UnosPassworda";
             this.UnosPassworda.PasswordChar = '*';
-            this.UnosPassworda.Size = new System.Drawing.Size(132, 22);
+            this.UnosPassworda.Size = new System.Drawing.Size(100, 20);
             this.UnosPassworda.TabIndex = 8;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.Location = new System.Drawing.Point(25, 155);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(19, 126);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(33, 17);
+            this.label2.Size = new System.Drawing.Size(27, 13);
             this.label2.TabIndex = 9;
             this.label2.Text = "Ime";
             // 
@@ -155,10 +145,9 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label3.Location = new System.Drawing.Point(25, 231);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(19, 188);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(66, 17);
+            this.label3.Size = new System.Drawing.Size(51, 13);
             this.label3.TabIndex = 10;
             this.label3.Text = "Prezime";
             // 
@@ -166,10 +155,9 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label4.Location = new System.Drawing.Point(25, 313);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(19, 254);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(120, 17);
+            this.label4.Size = new System.Drawing.Size(94, 13);
             this.label4.TabIndex = 11;
             this.label4.Text = "Godina rođenja";
             // 
@@ -177,10 +165,9 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label5.Location = new System.Drawing.Point(239, 155);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(179, 126);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(53, 17);
+            this.label5.Size = new System.Drawing.Size(41, 13);
             this.label5.TabIndex = 12;
             this.label5.Text = "E-mail";
             // 
@@ -188,10 +175,9 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label6.Location = new System.Drawing.Point(239, 231);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(179, 188);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(113, 17);
+            this.label6.Size = new System.Drawing.Size(89, 13);
             this.label6.TabIndex = 13;
             this.label6.Text = "Korisničko ime";
             // 
@@ -199,20 +185,18 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label7.Location = new System.Drawing.Point(239, 310);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Location = new System.Drawing.Point(179, 252);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(64, 17);
+            this.label7.Size = new System.Drawing.Size(51, 13);
             this.label7.TabIndex = 14;
             this.label7.Text = "Lozinka";
             // 
             // ObrisiKorisnika
             // 
             this.ObrisiKorisnika.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.ObrisiKorisnika.Location = new System.Drawing.Point(944, 171);
-            this.ObrisiKorisnika.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ObrisiKorisnika.Location = new System.Drawing.Point(708, 139);
             this.ObrisiKorisnika.Name = "ObrisiKorisnika";
-            this.ObrisiKorisnika.Size = new System.Drawing.Size(99, 28);
+            this.ObrisiKorisnika.Size = new System.Drawing.Size(74, 23);
             this.ObrisiKorisnika.TabIndex = 15;
             this.ObrisiKorisnika.Text = "Obriši";
             this.ObrisiKorisnika.UseVisualStyleBackColor = true;
@@ -221,10 +205,9 @@
             // UrediKorisnika
             // 
             this.UrediKorisnika.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.UrediKorisnika.Location = new System.Drawing.Point(944, 391);
-            this.UrediKorisnika.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.UrediKorisnika.Location = new System.Drawing.Point(708, 318);
             this.UrediKorisnika.Name = "UrediKorisnika";
-            this.UrediKorisnika.Size = new System.Drawing.Size(99, 28);
+            this.UrediKorisnika.Size = new System.Drawing.Size(74, 23);
             this.UrediKorisnika.TabIndex = 16;
             this.UrediKorisnika.Text = "Uredi";
             this.UrediKorisnika.UseVisualStyleBackColor = true;
@@ -233,10 +216,9 @@
             // IzmjeniKorisnika
             // 
             this.IzmjeniKorisnika.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.IzmjeniKorisnika.Location = new System.Drawing.Point(243, 391);
-            this.IzmjeniKorisnika.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.IzmjeniKorisnika.Location = new System.Drawing.Point(182, 318);
             this.IzmjeniKorisnika.Name = "IzmjeniKorisnika";
-            this.IzmjeniKorisnika.Size = new System.Drawing.Size(99, 28);
+            this.IzmjeniKorisnika.Size = new System.Drawing.Size(74, 23);
             this.IzmjeniKorisnika.TabIndex = 17;
             this.IzmjeniKorisnika.Text = "Izmjeni";
             this.IzmjeniKorisnika.UseVisualStyleBackColor = true;
@@ -245,10 +227,9 @@
             // PovratakUIzbornik
             // 
             this.PovratakUIzbornik.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.PovratakUIzbornik.Location = new System.Drawing.Point(1000, 592);
-            this.PovratakUIzbornik.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PovratakUIzbornik.Location = new System.Drawing.Point(750, 481);
             this.PovratakUIzbornik.Name = "PovratakUIzbornik";
-            this.PovratakUIzbornik.Size = new System.Drawing.Size(169, 28);
+            this.PovratakUIzbornik.Size = new System.Drawing.Size(127, 23);
             this.PovratakUIzbornik.TabIndex = 18;
             this.PovratakUIzbornik.Text = "Povratak u izbornik";
             this.PovratakUIzbornik.UseVisualStyleBackColor = true;
@@ -257,21 +238,31 @@
             // PovratakULogin
             // 
             this.PovratakULogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.PovratakULogin.Location = new System.Drawing.Point(823, 592);
-            this.PovratakULogin.Margin = new System.Windows.Forms.Padding(4);
+            this.PovratakULogin.Location = new System.Drawing.Point(617, 481);
             this.PovratakULogin.Name = "PovratakULogin";
-            this.PovratakULogin.Size = new System.Drawing.Size(169, 28);
+            this.PovratakULogin.Size = new System.Drawing.Size(127, 23);
             this.PovratakULogin.TabIndex = 19;
             this.PovratakULogin.Text = "Povratak u login";
             this.PovratakULogin.UseVisualStyleBackColor = true;
             this.PovratakULogin.Click += new System.EventHandler(this.PovratakULogin_Click);
             // 
+            // Sorter
+            // 
+            this.Sorter.FormattingEnabled = true;
+            this.Sorter.Location = new System.Drawing.Point(369, 99);
+            this.Sorter.Name = "Sorter";
+            this.Sorter.Size = new System.Drawing.Size(121, 21);
+            this.Sorter.TabIndex = 20;
+            this.Sorter.Text = "Poredaj po";
+            this.Sorter.SelectedIndexChanged += new System.EventHandler(this.Sorter_SelectedIndexChanged);
+            // 
             // KreiranjeKorisnika
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AntiqueWhite;
-            this.ClientSize = new System.Drawing.Size(1185, 635);
+            this.ClientSize = new System.Drawing.Size(889, 516);
+            this.Controls.Add(this.Sorter);
             this.Controls.Add(this.PovratakULogin);
             this.Controls.Add(this.PovratakUIzbornik);
             this.Controls.Add(this.IzmjeniKorisnika);
@@ -292,7 +283,6 @@
             this.Controls.Add(this.KreirajKorisnika);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.UnosImena);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "KreiranjeKorisnika";
             this.Text = "KreiranjeKorisnika";
             this.ResumeLayout(false);
@@ -323,5 +313,6 @@
         private System.Windows.Forms.Button IzmjeniKorisnika;
         private System.Windows.Forms.Button PovratakUIzbornik;
         private System.Windows.Forms.Button PovratakULogin;
+        private System.Windows.Forms.ComboBox Sorter;
     }
 }

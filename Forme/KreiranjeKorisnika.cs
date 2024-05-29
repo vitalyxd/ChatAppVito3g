@@ -1,5 +1,6 @@
 ﻿using ChatAppVito3g.Klase;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
@@ -182,6 +183,35 @@ namespace ChatAppVito3g.Forme
             Login form = new Login();
             form.Show();
             this.Hide();
+        }
+        private void InitComboBox()
+        {
+            Sorter.Items.Add("Sortiraj A-Z");
+            Sorter.Items.Add("Sortiraj Z-A");
+            Sorter.SelectedIndexChanged += new EventHandler(Sorter_SelectedIndexChanged);
+        }
+        private void Sorter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (Sorter.SelectedIndex == 0)
+            {
+                // Sortiraj A-Z
+                var sortedList = podatkovniKontekst.Korisnici.OrderBy(k => k.Ime).ToList();
+                UpdateListBox(sortedList);
+            }
+            else if (Sorter.SelectedIndex == 1)
+            {
+                // Sortiraj Z-A
+                var sortedList = podatkovniKontekst.Korisnici.OrderByDescending(k => k.Ime).ToList();
+                UpdateListBox(sortedList);
+            }
+        }
+        private void UpdateListBox(List<Korisnik> sortedKorisnici)
+        {
+            PrikazKorisnika.Items.Clear();
+            foreach (var korisnik in sortedKorisnici)
+            {
+                PrikazKorisnika.Items.Add(korisnik);
+            }
         }
     }
 }
