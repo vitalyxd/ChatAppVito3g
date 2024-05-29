@@ -1,6 +1,5 @@
 ﻿using ChatAppVito3g.Klase;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
@@ -11,11 +10,13 @@ namespace ChatAppVito3g.Forme
     {
         private Korisnik odabraniKorisnik;
         private PodatkovniKontekst podatkovniKontekst;
+        private string trenutniUsername;
 
-        public KreiranjeKorisnika()
+        public KreiranjeKorisnika(string username)
         {
             InitializeComponent();
             podatkovniKontekst = new PodatkovniKontekst();
+            trenutniUsername = username; // Pohrana trenutnog korisničkog imena
             UcitajKorisnike();
         }
 
@@ -164,10 +165,23 @@ namespace ChatAppVito3g.Forme
 
         private void PovratakUIzbornik_Click(object sender, EventArgs e)
         {
-            Izbornik form = new Izbornik();
+            if (!string.IsNullOrEmpty(trenutniUsername))
+            {
+                Izbornik form = new Izbornik(trenutniUsername); // Prosljeđivanje trenutnog korisničkog imena
+                form.Show();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Morate biti prijavljeni da biste pristupili izborniku.", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void PovratakULogin_Click(object sender, EventArgs e)
+        {
+            Login form = new Login();
             form.Show();
-            
-            this.Close();
+            this.Hide();
         }
     }
 }

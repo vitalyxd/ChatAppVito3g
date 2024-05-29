@@ -7,16 +7,19 @@ namespace ChatAppVito3g
     public partial class Izbornik : Form
     {
         private PrikazRazgovora prikazRazgovoraForm;
+        private string trenutniUsername;
 
-        public Izbornik()
+        public Izbornik(string username)
         {
             InitializeComponent();
-            prikazRazgovoraForm = new PrikazRazgovora(); // Inicijalizacija instance forme PrikazRazgovora
+            prikazRazgovoraForm = new PrikazRazgovora();
+            trenutniUsername = username; // Pohrana trenutnog korisničkog imena
+            UsernameTrenutnogKorisnika.Text = $"Prijavljeni ste kao: {trenutniUsername}"; // Prikaz korisničkog imena
         }
 
         private void KreirajKorisnika_Click(object sender, EventArgs e)
         {
-            KreiranjeKorisnika form = new KreiranjeKorisnika();
+            KreiranjeKorisnika form = new KreiranjeKorisnika(trenutniUsername); // Prosljeđivanje korisničkog imena
             form.Show();
         }
 
@@ -29,6 +32,14 @@ namespace ChatAppVito3g
         {
             PosaljiPoruku form = new PosaljiPoruku(prikazRazgovoraForm);
             form.Show();
+        }
+
+        private void Logout_Click(object sender, EventArgs e)
+        {
+            // Implementacija odjave
+            this.Close(); // Zatvaranje forme Izbornik
+            var loginForm = new Login();
+            loginForm.Show(); // Prikaz forme za prijavu
         }
     }
 }
