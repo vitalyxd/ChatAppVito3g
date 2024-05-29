@@ -194,9 +194,9 @@
             // ObrisiKorisnika
             // 
             this.ObrisiKorisnika.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.ObrisiKorisnika.Location = new System.Drawing.Point(708, 139);
+            this.ObrisiKorisnika.Location = new System.Drawing.Point(496, 99);
             this.ObrisiKorisnika.Name = "ObrisiKorisnika";
-            this.ObrisiKorisnika.Size = new System.Drawing.Size(74, 23);
+            this.ObrisiKorisnika.Size = new System.Drawing.Size(74, 21);
             this.ObrisiKorisnika.TabIndex = 15;
             this.ObrisiKorisnika.Text = "Obriši";
             this.ObrisiKorisnika.UseVisualStyleBackColor = true;
@@ -205,9 +205,9 @@
             // UrediKorisnika
             // 
             this.UrediKorisnika.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.UrediKorisnika.Location = new System.Drawing.Point(708, 318);
+            this.UrediKorisnika.Location = new System.Drawing.Point(628, 99);
             this.UrediKorisnika.Name = "UrediKorisnika";
-            this.UrediKorisnika.Size = new System.Drawing.Size(74, 23);
+            this.UrediKorisnika.Size = new System.Drawing.Size(74, 21);
             this.UrediKorisnika.TabIndex = 16;
             this.UrediKorisnika.Text = "Uredi";
             this.UrediKorisnika.UseVisualStyleBackColor = true;

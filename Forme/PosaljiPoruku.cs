@@ -8,15 +8,10 @@ namespace ChatAppVito3g.Forme
     {
         private PrikazRazgovora prikazRazgovoraForm;
         private Razgovor trenutniRazgovor;
+        private PodatkovniKontekst podatkovniKontekst;
 
         // Konstruktor za novi razgovor
-        public PosaljiPoruku(PrikazRazgovora form)
-        {
-            InitializeComponent();
-            prikazRazgovoraForm = form;
-            trenutniRazgovor = new Razgovor { Id = PrikazRazgovora.BrojacRazgovora++, Aktivan = true };
-            this.FormClosed += new FormClosedEventHandler(PosaljiPoruku_FormClosed);
-        }
+        public PosaljiPoruku(PrikazRazgovora form) : this(form, new Razgovor { Id = PrikazRazgovora.BrojacRazgovora++, Aktivan = true }) { }
 
         // Konstruktor za postojeći razgovor
         public PosaljiPoruku(PrikazRazgovora form, Razgovor razgovor)
@@ -24,6 +19,7 @@ namespace ChatAppVito3g.Forme
             InitializeComponent();
             prikazRazgovoraForm = form;
             trenutniRazgovor = razgovor;
+            podatkovniKontekst = new PodatkovniKontekst(); // Inicijalizacija podatkovnog konteksta
             this.FormClosed += new FormClosedEventHandler(PosaljiPoruku_FormClosed);
 
             // Prikaz poruka u ListBoxu
@@ -31,6 +27,21 @@ namespace ChatAppVito3g.Forme
             {
                 PrikazPoruka.Items.Add(poruka);
             }
+
+            // Dodavanje AutoComplete funkcionalnosti za textbox1 tj. unos primatelja
+            textBox1.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            textBox1.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            textBox1.AutoCompleteCustomSource = GetKorisniciAutoCompleteSource();
+        }
+
+        private AutoCompleteStringCollection GetKorisniciAutoCompleteSource()
+        {
+            AutoCompleteStringCollection source = new AutoCompleteStringCollection();
+            foreach (var korisnik in podatkovniKontekst.Korisnici)
+            {
+                source.Add(korisnik.Username);
+            }
+            return source;
         }
 
         private void Posalji_Click(object sender, EventArgs e)
@@ -57,6 +68,11 @@ namespace ChatAppVito3g.Forme
             {
                 prikazRazgovoraForm.DodajRazgovor(trenutniRazgovor);
             }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            // Ovdje možete implementirati dodatnu logiku ako je potrebna
         }
     }
 }

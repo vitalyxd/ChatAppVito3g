@@ -19,6 +19,7 @@ namespace ChatAppVito3g.Forme
             podatkovniKontekst = new PodatkovniKontekst();
             trenutniUsername = username; // Pohrana trenutnog korisničkog imena
             UcitajKorisnike();
+            InitComboBox(); // Poziv metode za inicijalizaciju ComboBoxa
         }
 
         private void KreirajKorisnika_Click(object sender, EventArgs e)
@@ -184,12 +185,15 @@ namespace ChatAppVito3g.Forme
             form.Show();
             this.Hide();
         }
+
         private void InitComboBox()
         {
+            // Inicijalizacija ComboBox-a s opcijama za sortiranje
             Sorter.Items.Add("Sortiraj A-Z");
             Sorter.Items.Add("Sortiraj Z-A");
             Sorter.SelectedIndexChanged += new EventHandler(Sorter_SelectedIndexChanged);
         }
+
         private void Sorter_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (Sorter.SelectedIndex == 0)
@@ -205,6 +209,7 @@ namespace ChatAppVito3g.Forme
                 UpdateListBox(sortedList);
             }
         }
+
         private void UpdateListBox(List<Korisnik> sortedKorisnici)
         {
             PrikazKorisnika.Items.Clear();

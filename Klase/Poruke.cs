@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ChatAppVito3g.Klase
 {
@@ -37,8 +33,6 @@ namespace ChatAppVito3g.Klase
             set { poruka = value; }
         }
 
-
-
         public int CompareTo(object obj)
         {
             int rez = this.id.CompareTo(((Poruke)obj).id);
@@ -46,8 +40,8 @@ namespace ChatAppVito3g.Klase
             if (rez == 0) rez = this.primatelj.CompareTo(((Poruke)obj).primatelj);
             return rez;
         }
-        public override string ToString()
 
+        public override string ToString()
             => Posiljatelj.ToString() + "," + Primatelj.ToString() + "," + Poruka + "->" + Id.ToString();
     }
 }
