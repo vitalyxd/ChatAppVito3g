@@ -36,10 +36,9 @@ namespace ChatAppVito3g
 
         private void Logout_Click(object sender, EventArgs e)
         {
-            // Implementacija odjave
-            this.Close(); // Zatvaranje forme Izbornik
+            this.Close(); 
             var loginForm = new Login();
-            loginForm.Show(); // Prikaz forme za prijavu
+            loginForm.Show(); 
         }
     }
 }

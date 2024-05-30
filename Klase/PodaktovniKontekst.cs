@@ -119,8 +119,20 @@ namespace ChatAppVito3g.Klase
 
         public void DodajRazgovor(Razgovor razgovor)
         {
-            this.razgovori.Add(razgovor);
-            SpremiRazgovore();
+            var existingConversation = this.razgovori.FirstOrDefault(r => r.Id == razgovor.Id);
+            if (existingConversation == null)
+            {
+                this.razgovori.Add(razgovor);
+                SpremiRazgovore();
+            }
+            else
+            {
+                // Ažuriraj postojeći razgovor (ako je potrebno)
+                existingConversation.Poruke = razgovor.Poruke;
+                existingConversation.Aktivan = razgovor.Aktivan;
+                SpremiRazgovore();
+            }
         }
     }
 }
+

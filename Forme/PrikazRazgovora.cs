@@ -14,7 +14,7 @@ namespace ChatAppVito3g.Forme
         public PrikazRazgovora(string trenutniKorisnik)
         {
             InitializeComponent();
-            podatkovniKontekst = new PodatkovniKontekst(); 
+            podatkovniKontekst = new PodatkovniKontekst();
             this.trenutniKorisnik = trenutniKorisnik;
             AzurirajListBox();
         }
@@ -22,11 +22,24 @@ namespace ChatAppVito3g.Forme
         public void AzurirajListBox()
         {
             RazgovoriListBox.Items.Clear();
-            var razgovori = GlobalnaPohrana.DohvatiRazgovoreZaKorisnika(trenutniKorisnik);
+            var razgovori = DohvatiRazgovoreZaKorisnika(trenutniKorisnik);
             foreach (var razgovor in razgovori)
             {
                 RazgovoriListBox.Items.Add(razgovor.ToString());
             }
+        }
+
+        private List<Razgovor> DohvatiRazgovoreZaKorisnika(string korisnik)
+        {
+            List<Razgovor> korisnikoviRazgovori = new List<Razgovor>();
+            foreach (var razgovor in podatkovniKontekst.Razgovori)
+            {
+                if (razgovor.Posiljatelj == korisnik || razgovor.Primatelj == korisnik)
+                {
+                    korisnikoviRazgovori.Add(razgovor);
+                }
+            }
+            return korisnikoviRazgovori;
         }
 
         private void OtvoriRazgovor_Click(object sender, EventArgs e)
@@ -34,7 +47,7 @@ namespace ChatAppVito3g.Forme
             if (RazgovoriListBox.SelectedItem != null)
             {
                 int indeks = RazgovoriListBox.SelectedIndex;
-                var razgovori = GlobalnaPohrana.DohvatiRazgovoreZaKorisnika(trenutniKorisnik);
+                var razgovori = DohvatiRazgovoreZaKorisnika(trenutniKorisnik);
                 Razgovor odabraniRazgovor = razgovori[indeks];
 
                 if (odabraniRazgovor.JeDioRazgovora(trenutniKorisnik))
@@ -58,11 +71,11 @@ namespace ChatAppVito3g.Forme
             if (RazgovoriListBox.SelectedItem != null)
             {
                 int indeks = RazgovoriListBox.SelectedIndex;
-                var razgovori = GlobalnaPohrana.DohvatiRazgovoreZaKorisnika(trenutniKorisnik);
+                var razgovori = DohvatiRazgovoreZaKorisnika(trenutniKorisnik);
                 Razgovor razgovorZaBrisanje = razgovori[indeks];
-                GlobalnaPohrana.SviRazgovori.Remove(razgovorZaBrisanje);
+                podatkovniKontekst.Razgovori.Remove(razgovorZaBrisanje);
                 AzurirajListBox();
-                podatkovniKontekst.SpremiRazgovore(); // Dodaj ovu liniju
+                podatkovniKontekst.SpremiRazgovore();
             }
             else
             {
@@ -72,7 +85,7 @@ namespace ChatAppVito3g.Forme
 
         public void DodajRazgovor(Razgovor razgovor)
         {
-            GlobalnaPohrana.DodajRazgovor(razgovor);
+            podatkovniKontekst.DodajRazgovor(razgovor);
             AzurirajListBox();
         }
 
@@ -80,7 +93,5 @@ namespace ChatAppVito3g.Forme
         {
             podatkovniKontekst.SpremiRazgovore();
         }
-       
-
     }
 }

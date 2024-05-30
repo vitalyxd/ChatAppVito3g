@@ -1,5 +1,6 @@
 ﻿using ChatAppVito3g.Klase;
 using System;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace ChatAppVito3g.Forme
@@ -13,7 +14,7 @@ namespace ChatAppVito3g.Forme
 
         // Konstruktor za novi razgovor
         public PosaljiPoruku(PrikazRazgovora form, string trenutniKorisnik)
-        : this(form, new Razgovor { Id = PrikazRazgovora.BrojacRazgovora++, Aktivan = true }, trenutniKorisnik) { }
+            : this(form, new Razgovor { Id = PrikazRazgovora.BrojacRazgovora++, Aktivan = true }, trenutniKorisnik) { }
 
         // Konstruktor za postojeći razgovor
         public PosaljiPoruku(PrikazRazgovora form, Razgovor razgovor, string trenutniKorisnik)
@@ -24,6 +25,17 @@ namespace ChatAppVito3g.Forme
             podatkovniKontekst = new PodatkovniKontekst();
             this.trenutniKorisnik = trenutniKorisnik;
             this.FormClosed += new FormClosedEventHandler(PosaljiPoruku_FormClosed);
+
+            // Proveri da li razgovor već postoji u kontekstu podataka
+            var existingConversation = podatkovniKontekst.Razgovori.FirstOrDefault(r => r.Id == trenutniRazgovor.Id);
+            if (existingConversation == null)
+            {
+                podatkovniKontekst.DodajRazgovor(trenutniRazgovor);
+            }
+            else
+            {
+                trenutniRazgovor = existingConversation;
+            }
 
             // Prikaz poruka u ListBoxu
             foreach (var poruka in trenutniRazgovor.Poruke)
@@ -76,8 +88,12 @@ namespace ChatAppVito3g.Forme
                 trenutniRazgovor.DodajPoruku(poruka);
                 PrikazPoruka.Items.Add(poruka.ToString());
                 UpisiPoruku.Clear();
+
+                // Ažuriranje prikaza razgovora
                 prikazRazgovoraForm.AzurirajListBox();
-                podatkovniKontekst.SpremiRazgovore(); // Dodaj ovu liniju
+
+                // Spremanje razgovora u datoteku
+                podatkovniKontekst.SpremiRazgovore();
             }
             else
             {
@@ -87,12 +103,9 @@ namespace ChatAppVito3g.Forme
 
         private void PosaljiPoruku_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (!GlobalnaPohrana.SviRazgovori.Contains(trenutniRazgovor))
-            {
-                GlobalnaPohrana.DodajRazgovor(trenutniRazgovor);
-            }
-            prikazRazgovoraForm.AzurirajListBox();
+            // Osiguravanje da se promene spremaju prilikom zatvaranja forme
             podatkovniKontekst.SpremiRazgovore();
+            prikazRazgovoraForm.AzurirajListBox();
         }
     }
 }

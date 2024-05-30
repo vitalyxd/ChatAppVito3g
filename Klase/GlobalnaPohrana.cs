@@ -1,23 +1,29 @@
-﻿using System;
+﻿using ChatAppVito3g.Klase;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ChatAppVito3g.Klase
+namespace ChatAppVito3g
 {
     public static class GlobalnaPohrana
     {
-        public static List<Razgovor> SviRazgovori { get; set; } = new List<Razgovor>();
+        private static PodatkovniKontekst podatkovniKontekst = new PodatkovniKontekst();
+        public static List<Razgovor> SviRazgovori => podatkovniKontekst.Razgovori;
 
         public static void DodajRazgovor(Razgovor razgovor)
         {
-            SviRazgovori.Add(razgovor);
+            podatkovniKontekst.DodajRazgovor(razgovor);
         }
 
         public static List<Razgovor> DohvatiRazgovoreZaKorisnika(string korisnik)
         {
-            return SviRazgovori.FindAll(r => r.JeDioRazgovora(korisnik));
+            List<Razgovor> korisnikoviRazgovori = new List<Razgovor>();
+            foreach (var razgovor in SviRazgovori)
+            {
+                if (razgovor.Posiljatelj == korisnik || razgovor.Primatelj == korisnik)
+                {
+                    korisnikoviRazgovori.Add(razgovor);
+                }
+            }
+            return korisnikoviRazgovori;
         }
     }
 }

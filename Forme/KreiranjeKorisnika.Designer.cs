@@ -227,7 +227,7 @@
             // PovratakUIzbornik
             // 
             this.PovratakUIzbornik.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.PovratakUIzbornik.Location = new System.Drawing.Point(750, 481);
+            this.PovratakUIzbornik.Location = new System.Drawing.Point(642, 381);
             this.PovratakUIzbornik.Name = "PovratakUIzbornik";
             this.PovratakUIzbornik.Size = new System.Drawing.Size(127, 23);
             this.PovratakUIzbornik.TabIndex = 18;
@@ -238,7 +238,7 @@
             // PovratakULogin
             // 
             this.PovratakULogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.PovratakULogin.Location = new System.Drawing.Point(617, 481);
+            this.PovratakULogin.Location = new System.Drawing.Point(509, 381);
             this.PovratakULogin.Name = "PovratakULogin";
             this.PovratakULogin.Size = new System.Drawing.Size(127, 23);
             this.PovratakULogin.TabIndex = 19;
@@ -261,7 +261,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AntiqueWhite;
-            this.ClientSize = new System.Drawing.Size(889, 516);
+            this.ClientSize = new System.Drawing.Size(781, 416);
             this.Controls.Add(this.Sorter);
             this.Controls.Add(this.PovratakULogin);
             this.Controls.Add(this.PovratakUIzbornik);

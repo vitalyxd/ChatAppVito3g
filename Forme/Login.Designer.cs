@@ -50,7 +50,7 @@
             // Ulogiraj
             // 
             this.Ulogiraj.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.Ulogiraj.Location = new System.Drawing.Point(94, 305);
+            this.Ulogiraj.Location = new System.Drawing.Point(93, 212);
             this.Ulogiraj.Name = "Ulogiraj";
             this.Ulogiraj.Size = new System.Drawing.Size(100, 23);
             this.Ulogiraj.TabIndex = 1;
@@ -61,7 +61,7 @@
             // Registriraj
             // 
             this.Registriraj.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.Registriraj.Location = new System.Drawing.Point(94, 350);
+            this.Registriraj.Location = new System.Drawing.Point(93, 257);
             this.Registriraj.Name = "Registriraj";
             this.Registriraj.Size = new System.Drawing.Size(100, 23);
             this.Registriraj.TabIndex = 2;
@@ -71,14 +71,14 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(66, 225);
+            this.textBox1.Location = new System.Drawing.Point(65, 132);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(154, 20);
             this.textBox1.TabIndex = 3;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(66, 265);
+            this.textBox2.Location = new System.Drawing.Point(65, 172);
             this.textBox2.Name = "textBox2";
             this.textBox2.PasswordChar = '*';
             this.textBox2.Size = new System.Drawing.Size(154, 20);
@@ -88,7 +88,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.Location = new System.Drawing.Point(63, 209);
+            this.label2.Location = new System.Drawing.Point(62, 116);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(63, 13);
             this.label2.TabIndex = 5;
@@ -98,7 +98,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label3.Location = new System.Drawing.Point(63, 248);
+            this.label3.Location = new System.Drawing.Point(62, 155);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(61, 13);
             this.label3.TabIndex = 6;
@@ -109,7 +109,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AntiqueWhite;
-            this.ClientSize = new System.Drawing.Size(280, 425);
+            this.ClientSize = new System.Drawing.Size(284, 310);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBox2);
