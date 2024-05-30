@@ -9,29 +9,38 @@ namespace ChatAppVito3g.Forme
         private PrikazRazgovora prikazRazgovoraForm;
         private Razgovor trenutniRazgovor;
         private PodatkovniKontekst podatkovniKontekst;
+        private string trenutniKorisnik;
 
         // Konstruktor za novi razgovor
-        public PosaljiPoruku(PrikazRazgovora form) : this(form, new Razgovor { Id = PrikazRazgovora.BrojacRazgovora++, Aktivan = true }) { }
+        public PosaljiPoruku(PrikazRazgovora form, string trenutniKorisnik)
+        : this(form, new Razgovor { Id = PrikazRazgovora.BrojacRazgovora++, Aktivan = true }, trenutniKorisnik) { }
 
         // Konstruktor za postojeći razgovor
-        public PosaljiPoruku(PrikazRazgovora form, Razgovor razgovor)
+        public PosaljiPoruku(PrikazRazgovora form, Razgovor razgovor, string trenutniKorisnik)
         {
             InitializeComponent();
             prikazRazgovoraForm = form;
             trenutniRazgovor = razgovor;
-            podatkovniKontekst = new PodatkovniKontekst(); // Inicijalizacija podatkovnog konteksta
+            podatkovniKontekst = new PodatkovniKontekst();
+            this.trenutniKorisnik = trenutniKorisnik;
             this.FormClosed += new FormClosedEventHandler(PosaljiPoruku_FormClosed);
 
             // Prikaz poruka u ListBoxu
             foreach (var poruka in trenutniRazgovor.Poruke)
             {
-                PrikazPoruka.Items.Add(poruka);
+                PrikazPoruka.Items.Add(poruka.ToString());
             }
 
             // Dodavanje AutoComplete funkcionalnosti za textbox1 tj. unos primatelja
             textBox1.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             textBox1.AutoCompleteSource = AutoCompleteSource.CustomSource;
             textBox1.AutoCompleteCustomSource = GetKorisniciAutoCompleteSource();
+
+            // Postavi pošiljatelja
+            if (trenutniRazgovor.Posiljatelj == null)
+            {
+                trenutniRazgovor.Posiljatelj = trenutniKorisnik;
+            }
         }
 
         private AutoCompleteStringCollection GetKorisniciAutoCompleteSource()
@@ -46,33 +55,44 @@ namespace ChatAppVito3g.Forme
 
         private void Posalji_Click(object sender, EventArgs e)
         {
-            string poruka = UpisiPoruku.Text.Trim();
+            string porukaText = UpisiPoruku.Text.Trim();
+            string primatelj = textBox1.Text.Trim();
 
-            if (!string.IsNullOrEmpty(poruka))
+            if (!string.IsNullOrEmpty(porukaText) && !string.IsNullOrEmpty(primatelj))
             {
-                PrikazPoruka.Items.Add(poruka);
-                trenutniRazgovor.DodajPoruku(poruka); // Dodaj poruku u trenutniRazgovor
+                if (trenutniRazgovor.Primatelj == null)
+                {
+                    trenutniRazgovor.Primatelj = primatelj;
+                }
+
+                var poruka = new Poruke
+                {
+                    Id = trenutniRazgovor.Poruke.Count + 1,
+                    Posiljatelj = new Korisnik { Username = trenutniKorisnik },
+                    Primatelj = new Korisnik { Username = primatelj },
+                    Poruka = porukaText
+                };
+
+                trenutniRazgovor.DodajPoruku(poruka);
+                PrikazPoruka.Items.Add(poruka.ToString());
                 UpisiPoruku.Clear();
-                prikazRazgovoraForm.AzurirajListBox(); // Ažuriraj prikaz razgovora
+                prikazRazgovoraForm.AzurirajListBox();
+                podatkovniKontekst.SpremiRazgovore(); // Dodaj ovu liniju
             }
             else
             {
-                MessageBox.Show("Unesite poruku prije slanja.", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Unesite poruku i primatelja prije slanja.", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void PosaljiPoruku_FormClosed(object sender, FormClosedEventArgs e)
         {
-            // Ažuriraj razgovore samo ako je ovo novi razgovor
-            if (!prikazRazgovoraForm.Razgovori.Contains(trenutniRazgovor))
+            if (!GlobalnaPohrana.SviRazgovori.Contains(trenutniRazgovor))
             {
-                prikazRazgovoraForm.DodajRazgovor(trenutniRazgovor);
+                GlobalnaPohrana.DodajRazgovor(trenutniRazgovor);
             }
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            // Ovdje možete implementirati dodatnu logiku ako je potrebna
+            prikazRazgovoraForm.AzurirajListBox();
+            podatkovniKontekst.SpremiRazgovore();
         }
     }
 }

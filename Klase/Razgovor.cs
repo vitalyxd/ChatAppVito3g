@@ -6,8 +6,10 @@ namespace ChatAppVito3g.Klase
     public class Razgovor : IComparable
     {
         private int id;
-        private List<string> poruke = new List<string>();
+        private List<Poruke> poruke = new List<Poruke>();
         private bool aktivan;
+        private string posiljatelj;
+        private string primatelj;
 
         public int Id
         {
@@ -15,7 +17,7 @@ namespace ChatAppVito3g.Klase
             set { id = value; }
         }
 
-        public List<string> Poruke
+        public List<Poruke> Poruke
         {
             get { return poruke; }
             set { poruke = value; }
@@ -27,9 +29,26 @@ namespace ChatAppVito3g.Klase
             set { aktivan = value; }
         }
 
-        public void DodajPoruku(string poruka)
+        public string Posiljatelj
+        {
+            get { return posiljatelj; }
+            set { posiljatelj = value; }
+        }
+
+        public string Primatelj
+        {
+            get { return primatelj; }
+            set { primatelj = value; }
+        }
+
+        public void DodajPoruku(Poruke poruka)
         {
             poruke.Add(poruka);
+        }
+
+        public bool JeDioRazgovora(string korisnik)
+        {
+            return korisnik == posiljatelj || korisnik == primatelj;
         }
 
         public int CompareTo(object obj)

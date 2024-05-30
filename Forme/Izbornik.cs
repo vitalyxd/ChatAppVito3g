@@ -12,8 +12,8 @@ namespace ChatAppVito3g
         public Izbornik(string username)
         {
             InitializeComponent();
-            prikazRazgovoraForm = new PrikazRazgovora();
             trenutniUsername = username; // Pohrana trenutnog korisničkog imena
+            prikazRazgovoraForm = new PrikazRazgovora(trenutniUsername); // Prosljeđivanje korisničkog imena
             UsernameTrenutnogKorisnika.Text = $"Prijavljeni ste kao: {trenutniUsername}"; // Prikaz korisničkog imena
         }
 
@@ -30,7 +30,7 @@ namespace ChatAppVito3g
 
         private void PosaljiPoruku_Click(object sender, EventArgs e)
         {
-            PosaljiPoruku form = new PosaljiPoruku(prikazRazgovoraForm);
+            PosaljiPoruku form = new PosaljiPoruku(prikazRazgovoraForm, trenutniUsername); // Prosljeđivanje korisničkog imena
             form.Show();
         }
 

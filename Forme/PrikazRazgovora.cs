@@ -7,25 +7,22 @@ namespace ChatAppVito3g.Forme
 {
     public partial class PrikazRazgovora : Form
     {
-        private List<Razgovor> razgovori = new List<Razgovor>();
+        private string trenutniKorisnik;
         public static int BrojacRazgovora = 1;
+        private PodatkovniKontekst podatkovniKontekst;
 
-        public PrikazRazgovora()
+        public PrikazRazgovora(string trenutniKorisnik)
         {
             InitializeComponent();
-        }
-
-        public List<Razgovor> Razgovori => razgovori;
-
-        public void DodajRazgovor(Razgovor razgovor)
-        {
-            razgovori.Add(razgovor);
+            podatkovniKontekst = new PodatkovniKontekst(); 
+            this.trenutniKorisnik = trenutniKorisnik;
             AzurirajListBox();
         }
 
         public void AzurirajListBox()
         {
             RazgovoriListBox.Items.Clear();
+            var razgovori = GlobalnaPohrana.DohvatiRazgovoreZaKorisnika(trenutniKorisnik);
             foreach (var razgovor in razgovori)
             {
                 RazgovoriListBox.Items.Add(razgovor.ToString());
@@ -37,11 +34,18 @@ namespace ChatAppVito3g.Forme
             if (RazgovoriListBox.SelectedItem != null)
             {
                 int indeks = RazgovoriListBox.SelectedIndex;
+                var razgovori = GlobalnaPohrana.DohvatiRazgovoreZaKorisnika(trenutniKorisnik);
                 Razgovor odabraniRazgovor = razgovori[indeks];
 
-                // Otvori formu PosaljiPoruku s odabranim razgovorom
-                PosaljiPoruku forma = new PosaljiPoruku(this, odabraniRazgovor);
-                forma.Show();
+                if (odabraniRazgovor.JeDioRazgovora(trenutniKorisnik))
+                {
+                    PosaljiPoruku forma = new PosaljiPoruku(this, odabraniRazgovor, trenutniKorisnik);
+                    forma.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Nemate pristup ovom razgovoru.", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
@@ -54,13 +58,29 @@ namespace ChatAppVito3g.Forme
             if (RazgovoriListBox.SelectedItem != null)
             {
                 int indeks = RazgovoriListBox.SelectedIndex;
-                razgovori.RemoveAt(indeks);
+                var razgovori = GlobalnaPohrana.DohvatiRazgovoreZaKorisnika(trenutniKorisnik);
+                Razgovor razgovorZaBrisanje = razgovori[indeks];
+                GlobalnaPohrana.SviRazgovori.Remove(razgovorZaBrisanje);
                 AzurirajListBox();
+                podatkovniKontekst.SpremiRazgovore(); // Dodaj ovu liniju
             }
             else
             {
                 MessageBox.Show("Molimo odaberite razgovor za brisanje.", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        public void DodajRazgovor(Razgovor razgovor)
+        {
+            GlobalnaPohrana.DodajRazgovor(razgovor);
+            AzurirajListBox();
+        }
+
+        private void PrikazRazgovora_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            podatkovniKontekst.SpremiRazgovore();
+        }
+       
+
     }
 }

@@ -42,6 +42,8 @@ namespace ChatAppVito3g.Klase
         }
 
         public override string ToString()
-            => Posiljatelj.ToString() + "," + Primatelj.ToString() + "," + Poruka + "->" + Id.ToString();
+        {
+            return $"{Posiljatelj.Username}: {Poruka}";
+        }
     }
 }
