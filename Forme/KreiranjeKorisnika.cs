@@ -44,6 +44,13 @@ namespace ChatAppVito3g.Forme
                 return;
             }
 
+            // Validacija emaila
+            if (!email.EndsWith("@gmail.com") && !email.EndsWith("@outlook.com") && !email.EndsWith("@hotmail.com"))
+            {
+                MessageBox.Show("Unesite točan email!", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             // Pokušaj parsiranja datuma rođenja u formatu dd.MM.yyyy
             if (!DateTime.TryParseExact(godRodjText, "d.M.yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime godRodj) &&
                 !DateTime.TryParseExact(godRodjText, "dd.MM.yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out godRodj))
@@ -116,6 +123,7 @@ namespace ChatAppVito3g.Forme
                 // Ažuriranje podataka odabranog korisnika
                 odabraniKorisnik.Ime = UnosImena.Text;
                 odabraniKorisnik.Prezime = UnosPrezimena.Text;
+
                 // Validacija i ažuriranje datuma rođenja
                 if (DateTime.TryParseExact(UnosGodRodj.Text, "dd.MM.yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime godRodj))
                 {
@@ -126,6 +134,14 @@ namespace ChatAppVito3g.Forme
                     MessageBox.Show("Neispravan format datuma rođenja. Format mora biti dd.MM.yyyy.", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+
+                // Validacija emaila
+                if (!UnosEmaila.Text.EndsWith("@gmail.com") && !UnosEmaila.Text.EndsWith("@outlook.com") && !UnosEmaila.Text.EndsWith("@hotmail.com"))
+                {
+                    MessageBox.Show("Unesite točan email!", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 odabraniKorisnik.Email = UnosEmaila.Text;
                 odabraniKorisnik.Username = UnosUsernamea.Text;
                 odabraniKorisnik.Password = UnosPassworda.Text;

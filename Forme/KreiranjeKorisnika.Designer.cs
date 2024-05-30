@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(KreiranjeKorisnika));
             this.UnosImena = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.KreirajKorisnika = new System.Windows.Forms.Button();
@@ -283,6 +284,7 @@
             this.Controls.Add(this.KreirajKorisnika);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.UnosImena);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "KreiranjeKorisnika";
             this.Text = "KreiranjeKorisnika";
             this.ResumeLayout(false);

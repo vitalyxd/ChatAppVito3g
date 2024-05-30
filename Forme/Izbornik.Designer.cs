@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Izbornik));
             this.label1 = new System.Windows.Forms.Label();
             this.KreirajKorisnika = new System.Windows.Forms.Button();
             this.PrikazRazgovora = new System.Windows.Forms.Button();
@@ -83,7 +84,7 @@
             // 
             this.Logout.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.Logout.Location = new System.Drawing.Point(11, 364);
-            this.Logout.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Logout.Margin = new System.Windows.Forms.Padding(2);
             this.Logout.Name = "Logout";
             this.Logout.Size = new System.Drawing.Size(60, 23);
             this.Logout.TabIndex = 4;
@@ -113,6 +114,7 @@
             this.Controls.Add(this.PrikazRazgovora);
             this.Controls.Add(this.KreirajKorisnika);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Izbornik";
             this.Text = "Form1";
             this.ResumeLayout(false);

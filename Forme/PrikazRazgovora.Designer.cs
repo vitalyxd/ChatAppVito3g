@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PrikazRazgovora));
             this.RazgovoriListBox = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
             this.OtvoriRazgovor = new System.Windows.Forms.Button();
@@ -85,6 +86,7 @@
             this.Controls.Add(this.OtvoriRazgovor);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.RazgovoriListBox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PrikazRazgovora";
             this.Text = "PrikazRazgovora";
             this.ResumeLayout(false);
